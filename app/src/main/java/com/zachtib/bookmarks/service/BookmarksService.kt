@@ -49,9 +49,8 @@ class BookmarksService(private val db: BookmarksDatabase) {
     suspend fun getBookmarks(): List<Bookmark> {
         val result = apiCall { getBookmarks() }
         return when (result) {
-            is ServerResponse.One -> listOf()
             is ServerResponse.Many -> result.data
-            ServerResponse.Disconnected -> listOf()
+            else -> listOf()
         }
     }
 }
