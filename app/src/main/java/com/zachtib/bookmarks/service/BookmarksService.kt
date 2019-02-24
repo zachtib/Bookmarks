@@ -5,9 +5,9 @@ import androidx.work.WorkManager
 import com.zachtib.bookmarks.api.BookmarksApi
 import com.zachtib.bookmarks.api.BookmarksApiProvider
 import com.zachtib.bookmarks.api.ServerResponse
+import com.zachtib.bookmarks.api.models.Account
+import com.zachtib.bookmarks.api.models.Bookmark
 import com.zachtib.bookmarks.db.BookmarksDatabase
-import com.zachtib.bookmarks.models.Account
-import com.zachtib.bookmarks.models.Bookmark
 import com.zachtib.bookmarks.work.RefreshDatabase
 
 class BookmarksService(private val db: BookmarksDatabase) {

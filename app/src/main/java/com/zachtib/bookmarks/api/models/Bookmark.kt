@@ -1,4 +1,4 @@
-package com.zachtib.bookmarks.models
+package com.zachtib.bookmarks.api.models
 
 import com.google.gson.annotations.SerializedName
 

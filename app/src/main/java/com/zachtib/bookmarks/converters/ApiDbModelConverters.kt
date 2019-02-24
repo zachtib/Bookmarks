@@ -1,6 +1,6 @@
 package com.zachtib.bookmarks.converters
 
-import com.zachtib.bookmarks.models.Bookmark as ApiBookmark
+import com.zachtib.bookmarks.api.models.Bookmark as ApiBookmark
 import com.zachtib.bookmarks.db.models.Bookmark as DbBookmark
 
 

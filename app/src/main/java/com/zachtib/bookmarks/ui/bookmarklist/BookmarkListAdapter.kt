@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.zachtib.bookmarks.R
-import com.zachtib.bookmarks.models.Bookmark
+import com.zachtib.bookmarks.api.models.Bookmark
 import kotlinx.android.synthetic.main.item_bookmark.view.*
 
 class BookmarkListAdapter : ListAdapter<Bookmark, BookmarkListAdapter.BookmarkViewHolder>(BookmarkDiffCallback) {

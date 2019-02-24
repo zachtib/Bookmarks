@@ -2,7 +2,7 @@ package com.zachtib.bookmarks.ui.login
 
 import androidx.lifecycle.ViewModel;
 import com.zachtib.bookmarks.BookmarksPreferences
-import com.zachtib.bookmarks.models.Account
+import com.zachtib.bookmarks.api.models.Account
 import com.zachtib.bookmarks.service.BookmarksService
 
 class LoginViewModel(

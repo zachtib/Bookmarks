@@ -6,9 +6,9 @@ import androidx.work.WorkerParameters
 import com.zachtib.bookmarks.BookmarksPreferences
 import com.zachtib.bookmarks.api.BookmarksApiProvider
 import com.zachtib.bookmarks.api.ServerResponse
+import com.zachtib.bookmarks.api.models.Bookmark
 import com.zachtib.bookmarks.converters.toDbModel
 import com.zachtib.bookmarks.db.BookmarksDatabase
-import com.zachtib.bookmarks.models.Bookmark
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
