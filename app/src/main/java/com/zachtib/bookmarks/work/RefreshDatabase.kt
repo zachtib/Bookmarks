@@ -11,6 +11,7 @@ import com.zachtib.bookmarks.converters.toDbModel
 import com.zachtib.bookmarks.db.BookmarksDatabase
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
+import timber.log.Timber
 
 class RefreshDatabase(context: Context, params: WorkerParameters)
     : CoroutineWorker(context, params), KoinComponent {
@@ -19,6 +20,7 @@ class RefreshDatabase(context: Context, params: WorkerParameters)
     private val prefs: BookmarksPreferences by inject()
 
     override suspend fun doWork(): Result {
+        Timber.d("${this.javaClass.simpleName} started")
         val api = BookmarksApiProvider.get(prefs.serverUrl, prefs.username, prefs.password)
         val response: ServerResponse<Bookmark> = api.getBookmarks()
         if (response is ServerResponse.Many) {

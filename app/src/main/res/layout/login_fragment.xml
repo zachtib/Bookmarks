@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.login.LoginFragment" android:id="@+id/background">
+        tools:context=".ui.addaccount.AddAccountFragment" android:id="@+id/background">
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"

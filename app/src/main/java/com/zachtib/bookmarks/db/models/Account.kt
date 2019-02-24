@@ -3,11 +3,11 @@ package com.zachtib.bookmarks.db.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "bookmarks")
-data class Bookmark(
+@Entity(tableName = "accounts")
+data class Account(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val accountId: Int,
-    val url: String,
-    val title: String
+    val serverUrl: String,
+    val username: String,
+    val password: String
 )
