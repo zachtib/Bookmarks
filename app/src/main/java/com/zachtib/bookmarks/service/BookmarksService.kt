@@ -1,14 +1,20 @@
 package com.zachtib.bookmarks.service
 
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.zachtib.bookmarks.api.BookmarksApi
 import com.zachtib.bookmarks.api.BookmarksApiProvider
 import com.zachtib.bookmarks.api.ServerResponse
-import com.zachtib.bookmarks.api.await
+import com.zachtib.bookmarks.db.BookmarksDatabase
 import com.zachtib.bookmarks.models.Account
 import com.zachtib.bookmarks.models.Bookmark
-import java.lang.IllegalArgumentException
+import com.zachtib.bookmarks.work.RefreshDatabase
 
-class BookmarksService {
+class BookmarksService(private val db: BookmarksDatabase) {
+
+    private val allBookmarks = db.bookmarkDao().getAllBookmarks()
+
+    fun getAllBookmarks() = allBookmarks
 
     private var api: BookmarksApi? = null
 
@@ -30,13 +36,18 @@ class BookmarksService {
         return true
     }
 
+    suspend fun populateDatabase() {
+        val work = OneTimeWorkRequestBuilder<RefreshDatabase>().build()
+        WorkManager.getInstance().enqueue(work)
+    }
+
     suspend fun isConnected(): Boolean {
-        val result = apiCall { getBookmarks().await() }
+        val result = apiCall { getBookmarks() }
         return result !is ServerResponse.Disconnected
     }
 
     suspend fun getBookmarks(): List<Bookmark> {
-        val result = apiCall { getBookmarks().await() }
+        val result = apiCall { getBookmarks() }
         return when (result) {
             is ServerResponse.One -> listOf()
             is ServerResponse.Many -> result.data

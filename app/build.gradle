@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -22,6 +24,10 @@ android {
     }
 }
 
+repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
 dependencies {
     final appcompat_version = '1.0.2'
     final corektx_version = '1.0.1'
@@ -31,10 +37,13 @@ dependencies {
     final koin_version = '1.0.2'
     final lifecycle_version = '2.0.0'
     final material_version = '1.0.0'
-    final nav_version = '1.0.0-beta02'
+    final nav_version = '1.0.0-rc01'
     final recyclerview_version = '1.0.0'
-    final retrofit_version = '2.5.0'
+    final room_version = "2.1.0-alpha04"
+    final retrofit_version = '2.5.1-SNAPSHOT'
     final timber_version = '4.7.1'
+    final work_version = "1.0.0-rc02"
+
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
@@ -57,17 +66,21 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-coroutines:$room_version"
+
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
 
+    // Kotlin + coroutines
+    implementation "android.arch.work:work-runtime-ktx:$work_version"
+
     implementation "com.jakewharton.timber:timber:$timber_version"
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    testImplementation "androidx.room:room-testing:$room_version"
+    androidTestImplementation "android.arch.work:work-testing:$work_version"
 }
