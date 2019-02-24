@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/app_navigation"
+            app:startDestination="@id/loginFragment">
+
+    <fragment android:id="@+id/loginFragment" android:name="com.zachtib.bookmarks.ui.login.LoginFragment"
+              android:label="login_fragment" tools:layout="@layout/login_fragment">
+        <action android:id="@+id/action_loginFragment_to_bookmarkListFragment"
+                app:destination="@id/bookmarkListFragment"/>
+    </fragment>
+    <fragment android:id="@+id/bookmarkListFragment"
+              android:name="com.zachtib.bookmarks.ui.bookmarklist.BookmarkListFragment"
+              android:label="bookmark_list_fragment" tools:layout="@layout/bookmark_list_fragment"/>
+</navigation>
