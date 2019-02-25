@@ -40,8 +40,10 @@ class AddAccountViewModel(
         _loginButtonEnabled.postValue(enabled)
     }
 
-    suspend fun loginButtonClicked() {
+    suspend fun loginButtonClicked(): Boolean {
         _loadingIndicatorVisible.value = true
-
+        val result = service.authenticate(serverUrl, username, password)
+        _loadingIndicatorVisible.value = false
+        return result
     }
 }

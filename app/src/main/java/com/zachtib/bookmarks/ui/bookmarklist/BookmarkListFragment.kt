@@ -1,6 +1,7 @@
 package com.zachtib.bookmarks.ui.bookmarklist
 
 import android.os.Bundle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zachtib.bookmarks.R
 import com.zachtib.bookmarks.converters.toApiModel
@@ -32,4 +33,12 @@ class BookmarkListFragment : BaseFragment(R.layout.bookmark_list_fragment) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        launch {
+            if (viewModel.shouldRedirectToAddAccount()) {
+                findNavController().navigate(R.id.addAccountFragment)
+            }
+        }
+    }
 }

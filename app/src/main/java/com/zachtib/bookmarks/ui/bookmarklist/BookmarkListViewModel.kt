@@ -6,6 +6,10 @@ import com.zachtib.bookmarks.service.BookmarksService
 class BookmarkListViewModel(private val service: BookmarksService) : ViewModel() {
     fun getBookmarks() = service.getAllBookmarks()
 
+    suspend fun shouldRedirectToAddAccount(): Boolean {
+        return service.getAccounts().isEmpty()
+    }
+
     suspend fun onStart() {
         service.populateDatabase()
     }

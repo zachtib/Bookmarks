@@ -24,16 +24,16 @@ class BookmarksService(private val db: BookmarksDatabase, private val prefs: Boo
         return api?.doApiCall() ?: ServerResponse.Disconnected
     }
 
-    suspend fun authenticate(serverUrl: String, username: String, password: String) {
+    suspend fun authenticate(serverUrl: String, username: String, password: String): Boolean {
         if (db.accountDao().getAccountByServerAndUsername(serverUrl, username) != null) {
             Timber.w("Tried to log into an account that already exists")
-            return
+            return false
         }
         api = BookmarksApiProvider.get(serverUrl, username, password)
         if (!isConnected()) {
             api = null
             Timber.w("Failed to connect to server $serverUrl")
-            return
+            return false
         }
 
         prefs.serverUrl = serverUrl
@@ -45,6 +45,11 @@ class BookmarksService(private val db: BookmarksDatabase, private val prefs: Boo
 
         val work = OneTimeWorkRequestBuilder<RefreshDatabase>().build()
         WorkManager.getInstance().enqueue(work)
+        return true
+    }
+
+    suspend fun getAccounts(): List<Account> {
+        return db.accountDao().getAllAccounts()
     }
 
 //    suspend fun connect(account: Account): Boolean {
