@@ -1,7 +1,6 @@
 package com.zachtib.bookmarks
 
 import android.content.Context
-import androidx.room.Room
 import com.zachtib.bookmarks.db.BookmarksDatabase
 import com.zachtib.bookmarks.db.createDatabase
 import com.zachtib.bookmarks.service.BookmarksService
