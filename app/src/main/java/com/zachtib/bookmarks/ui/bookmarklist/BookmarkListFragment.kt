@@ -1,10 +1,12 @@
 package com.zachtib.bookmarks.ui.bookmarklist
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zachtib.bookmarks.R
-import com.zachtib.bookmarks.converters.toApiModel
+import com.zachtib.bookmarks.db.models.Bookmark
 import com.zachtib.bookmarks.ui.BaseFragment
 import kotlinx.android.synthetic.main.bookmark_list_fragment.*
 import kotlinx.coroutines.launch
@@ -17,20 +19,24 @@ class BookmarkListFragment : BaseFragment(R.layout.bookmark_list_fragment) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val bookmarkListAdapter = BookmarkListAdapter()
+        val bookmarkListAdapter = BookmarkListAdapter(this::onBookmarkClicked)
 
         bookmarkRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = bookmarkListAdapter
         }
 
-        viewModel.getBookmarks().observe {
-            bookmarkListAdapter.submitList(it.map { dbModel -> dbModel.toApiModel() })
-        }
+        viewModel.getBookmarks().observe(bookmarkListAdapter::submitList)
 
         launch {
             viewModel.onStart()
         }
+    }
+
+    private fun onBookmarkClicked(bookmark: Bookmark) {
+        val browserIntent = Intent(Intent.ACTION_VIEW)
+        browserIntent.data = Uri.parse(bookmark.url)
+        startActivity(browserIntent)
     }
 
     override fun onResume() {
