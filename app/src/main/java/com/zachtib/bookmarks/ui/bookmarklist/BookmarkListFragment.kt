@@ -24,17 +24,13 @@ class BookmarkListFragment : BaseFragment(R.layout.bookmark_list_fragment) {
         }
 
         viewModel.getBookmarks().observe(bookmarkListAdapter::submitList)
-
-        launch {
-            viewModel.onStart()
-        }
     }
 
     override fun onResume() {
         super.onResume()
         launch {
             if (viewModel.shouldRedirectToAddAccount()) {
-                findNavController().navigate(R.id.addAccountFragment)
+                findNavController().navigate(R.id.action_bookmarkListFragment_to_addAccountFragment)
             }
         }
     }

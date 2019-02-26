@@ -18,8 +18,4 @@ class BookmarkListViewModel(
     fun onBookmarkClicked(bookmark: Bookmark) {
         openBookmark(bookmark)
     }
-
-    suspend fun onStart() {
-        service.populateDatabase()
-    }
 }
