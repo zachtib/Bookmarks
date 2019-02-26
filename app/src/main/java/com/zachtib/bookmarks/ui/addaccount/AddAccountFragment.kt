@@ -2,6 +2,7 @@ package com.zachtib.bookmarks.ui.addaccount
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.zachtib.bookmarks.R
 import com.zachtib.bookmarks.ui.BaseFragment
 import com.zachtib.bookmarks.ui.onTextChanged
@@ -26,7 +27,9 @@ class AddAccountFragment : BaseFragment(R.layout.login_fragment) {
 
         loginButton.setOnClickListener {
             launch {
-                viewModel.loginButtonClicked()
+                if(viewModel.loginButtonClicked()) {
+                    findNavController().navigate(R.id.action_loginFragment_to_bookmarkListFragment)
+                }
             }
         }
 

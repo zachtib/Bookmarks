@@ -6,7 +6,6 @@ import com.zachtib.bookmarks.BookmarksPreferences
 import com.zachtib.bookmarks.api.BookmarksApi
 import com.zachtib.bookmarks.api.BookmarksApiProvider
 import com.zachtib.bookmarks.api.ServerResponse
-import com.zachtib.bookmarks.api.models.Bookmark
 import com.zachtib.bookmarks.db.BookmarksDatabase
 import com.zachtib.bookmarks.db.models.Account
 import com.zachtib.bookmarks.work.RefreshDatabase
@@ -47,35 +46,10 @@ class BookmarksService(private val db: BookmarksDatabase, private val prefs: Boo
         WorkManager.getInstance().enqueue(work)
     }
 
-//    suspend fun connect(account: Account): Boolean {
-//        val (serverUrl, username, password) = account
-//        try {
-//            api = BookmarksApiProvider.get(serverUrl, username, password)
-//            if (!isConnected()) {
-//                api = null
-//                return false
-//            }
-//        } catch (e: IllegalArgumentException) {
-//            return false
-//        }
-//        return true
-//    }
-
-    suspend fun populateDatabase() {
-        val work = OneTimeWorkRequestBuilder<RefreshDatabase>().build()
-        WorkManager.getInstance().enqueue(work)
-    }
 
     suspend fun isConnected(): Boolean {
         val result = apiCall { getBookmarks() }
         return result !is ServerResponse.Disconnected
     }
 
-    suspend fun getBookmarks(): List<Bookmark> {
-        val result = apiCall { getBookmarks() }
-        return when (result) {
-            is ServerResponse.Many -> result.data
-            else -> listOf()
-        }
-    }
 }
