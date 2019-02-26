@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/app_navigation"
-            app:startDestination="@id/loginFragment">
+            app:startDestination="@id/bookmarkListFragment">
 
-    <fragment android:id="@+id/loginFragment" android:name="com.zachtib.bookmarks.ui.addaccount.AddAccountFragment"
-              android:label="login_fragment" tools:layout="@layout/login_fragment">
-        <action android:id="@+id/action_loginFragment_to_bookmarkListFragment"
-                app:destination="@id/bookmarkListFragment"/>
-    </fragment>
+    <fragment android:id="@+id/addAccountFragment" android:name="com.zachtib.bookmarks.ui.addaccount.AddAccountFragment"
+              android:label="login_fragment" tools:layout="@layout/login_fragment"/>
     <fragment android:id="@+id/bookmarkListFragment"
               android:name="com.zachtib.bookmarks.ui.bookmarklist.BookmarkListFragment"
-              android:label="bookmark_list_fragment" tools:layout="@layout/bookmark_list_fragment"/>
+              android:label="bookmark_list_fragment" tools:layout="@layout/bookmark_list_fragment">
+        <action android:id="@+id/action_bookmarkListFragment_to_addAccountFragment"
+                app:destination="@id/addAccountFragment"/>
+    </fragment>
 </navigation>

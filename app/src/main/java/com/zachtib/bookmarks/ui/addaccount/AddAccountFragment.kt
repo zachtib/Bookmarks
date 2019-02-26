@@ -27,8 +27,8 @@ class AddAccountFragment : BaseFragment(R.layout.login_fragment) {
 
         loginButton.setOnClickListener {
             launch {
-                if(viewModel.loginButtonClicked()) {
-                    findNavController().navigate(R.id.action_loginFragment_to_bookmarkListFragment)
+                if (viewModel.loginButtonClicked()) {
+                    findNavController().popBackStack()
                 }
             }
         }

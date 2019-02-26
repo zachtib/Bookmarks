@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.zachtib.bookmarks.BookmarksPreferences
 import com.zachtib.bookmarks.framework.mutableLiveDataOf
 import com.zachtib.bookmarks.service.BookmarksService
-import timber.log.Timber
 
 class AddAccountViewModel(
     private val preferences: BookmarksPreferences,
@@ -43,13 +42,8 @@ class AddAccountViewModel(
 
     suspend fun loginButtonClicked(): Boolean {
         _loadingIndicatorVisible.value = true
-        try {
-            service.authenticate(serverUrl, username, password)
-            return true
-        } catch (e: Exception) {
-            Timber.e(e)
-        }
+        val result = service.authenticate(serverUrl, username, password)
         _loadingIndicatorVisible.value = false
-        return false
+        return result
     }
 }
