@@ -1,4 +1,4 @@
-package com.zachtib.bookmarks.ui
+package com.zachtib.bookmarks.framework
 
 import android.os.Bundle
 import android.view.LayoutInflater

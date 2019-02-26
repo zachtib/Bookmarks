@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zachtib.bookmarks.R
-import com.zachtib.bookmarks.ui.BaseFragment
+import com.zachtib.bookmarks.framework.BaseFragment
 import kotlinx.android.synthetic.main.bookmark_list_fragment.*
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

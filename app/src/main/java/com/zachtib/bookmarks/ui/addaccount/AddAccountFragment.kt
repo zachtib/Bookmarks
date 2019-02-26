@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.zachtib.bookmarks.R
-import com.zachtib.bookmarks.ui.BaseFragment
-import com.zachtib.bookmarks.ui.onTextChanged
-import com.zachtib.bookmarks.ui.textValue
+import com.zachtib.bookmarks.framework.BaseFragment
+import com.zachtib.bookmarks.framework.onTextChanged
+import com.zachtib.bookmarks.framework.textValue
 import kotlinx.android.synthetic.main.login_fragment.*
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

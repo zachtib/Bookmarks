@@ -1,4 +1,4 @@
-package com.zachtib.bookmarks.ui
+package com.zachtib.bookmarks.framework
 
 import android.text.Editable
 import android.text.TextWatcher

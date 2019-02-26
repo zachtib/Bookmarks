@@ -1,4 +1,4 @@
-package com.zachtib.bookmarks.api
+package com.zachtib.bookmarks.framework
 
 import retrofit2.Call
 import retrofit2.Callback

@@ -1,4 +1,4 @@
-package com.zachtib.bookmarks.db
+package com.zachtib.bookmarks.framework
 
 import android.content.Context
 import androidx.room.Room

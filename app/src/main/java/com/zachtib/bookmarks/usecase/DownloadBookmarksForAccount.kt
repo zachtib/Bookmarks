@@ -1,4 +1,4 @@
-package com.zachtib.bookmarks.usecases
+package com.zachtib.bookmarks.usecase
 
 class DownloadBookmarksForAccount {
     operator fun invoke(accountId: Int) {

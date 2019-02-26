@@ -2,7 +2,7 @@ package com.zachtib.bookmarks
 
 import android.content.Context
 import com.zachtib.bookmarks.db.BookmarksDatabase
-import com.zachtib.bookmarks.db.createDatabase
+import com.zachtib.bookmarks.framework.createDatabase
 import com.zachtib.bookmarks.service.BookmarksService
 import com.zachtib.bookmarks.ui.addaccount.AddAccountViewModel
 import com.zachtib.bookmarks.ui.bookmarklist.BookmarkListViewModel
