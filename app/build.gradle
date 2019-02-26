@@ -43,6 +43,8 @@ dependencies {
     final lifecycle_version = '2.0.0'
     final material_version = '1.0.0'
     final nav_version = '1.0.0-rc01'
+    final okio_version = '2.2.2'
+    final okhttp_version = '3.13.1'
     final recyclerview_version = '1.0.0'
     final room_version = "2.1.0-alpha04"
     final retrofit_version = '2.5.1-SNAPSHOT'
@@ -71,6 +73,8 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okio:okio:$okio_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
