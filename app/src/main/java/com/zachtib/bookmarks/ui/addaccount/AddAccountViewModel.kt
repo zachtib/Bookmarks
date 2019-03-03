@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.zachtib.bookmarks.BookmarksPreferences
 import com.zachtib.bookmarks.framework.mutableLiveDataOf
 import com.zachtib.bookmarks.service.BookmarksService
+import java.net.URI
 
 class AddAccountViewModel(
     private val preferences: BookmarksPreferences,
@@ -34,16 +35,23 @@ class AddAccountViewModel(
         }
 
     private fun validateInput() {
-        val enabled = serverUrl.isNotBlank()
+        var enabled = serverUrl.isNotBlank()
                 && username.isNotBlank()
                 && password.isNotBlank()
+        try {
+            URI.create(serverUrl)
+        } catch (e: IllegalArgumentException) {
+            enabled = false
+        }
         _loginButtonEnabled.postValue(enabled)
     }
 
     suspend fun loginButtonClicked(): Boolean {
-        _loadingIndicatorVisible.value = true
-        val result = service.authenticate(serverUrl, username, password)
-        _loadingIndicatorVisible.value = false
-        return result
+        try {
+            _loadingIndicatorVisible.value = true
+            return service.authenticate(serverUrl, username, password)
+        } finally {
+            _loadingIndicatorVisible.value = false
+        }
     }
 }

@@ -26,7 +26,7 @@ class RefreshDatabase(context: Context, params: WorkerParameters)
         if (response is ServerResponse.Many) {
             val bookmarks = response.data.map { it.toDbModel() }.toTypedArray()
             db.bookmarkDao().deleteAll()
-            db.bookmarkDao().insertAll(*bookmarks)
+            db.bookmarkDao().insert(*bookmarks)
         }
         return Result.success()
     }
